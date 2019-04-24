@@ -48,7 +48,6 @@ class App extends React.Component {
         <h1>2048</h1>
 
         {board}
-
         <Functionality addNumber={this.addNumber} />
       </div>
     );
