@@ -34,20 +34,21 @@ class App extends React.Component {
     this.setState({board})
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.addNumber()
     this.addNumber()
   }
   render(){
-    let board = this.state.board.map(i =>{
-       let row = i.map((item, j) => {return <BlockItem key={j} num={item}></BlockItem>})
-      return <div className="board-row">{row}</div>
-    })
+    // let board = this.state.board.map((i,id) =>{
+    //    let row = i.map((item, j) => {return <BlockItem num={item}></BlockItem>})
+    //   return <div className="board-row">{row}</div>
+    // })
     return (
       <div className="App">
         <h1>2048</h1>
 
-        <Functionality board={board} addNumber={this.addNumber} />
+        <Functionality board={this.state.board} addNumber={this.addNumber} />
+        
       </div>
     );
   }
