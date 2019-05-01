@@ -38,6 +38,10 @@ export default class blockItem extends React.Component {
     render() {
         const { data } = this.props
         const mStyle = this.pickSize(data)
-        return <div className="Box" style={mStyle}>{data > 0 ? data : ''}</div>
+        ///depending on the number the color is initialize for style
+        //if data is greater than 0 then the number shows or else its empty
+        return (<div className="Box" style={mStyle}>
+        {data > 0 ? data : ''}
+        </div>)
     }
 }
