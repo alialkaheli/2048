@@ -44,28 +44,36 @@ class App extends React.Component {
   }
 
   initGame() {
+    // grid is an array of row and col 
     let grid = this.blankGrid.map(row => row.slice());
+    //initialize with 2 or 4 in two random spots
     grid = this.addNumber(grid);
     grid = this.addNumber(grid);
+    //sets the state to grid
     this.setState({
       gridData: grid,
       score: 0
     });
-    this.forceUpdate();
+    //this.forceUpdate();
   }
 
+  //function that adds 2 or 4 to a random spot
   addNumber(grid) {
     const availableSpot = [];
+    //adds all available spots in an array
     grid.forEach((rowData, x) =>
       rowData.forEach((data, y) => {
-        if (!data) availableSpot.push({ x, y });
+        if (!data) availableSpot.push([x,y]);
       })
     );
+    //chooses a random spot
     const randomSpot =
       availableSpot[Math.floor(Math.random() * availableSpot.length)];
-    grid[randomSpot.x][randomSpot.y] = Math.random() < 0.2 ? 4 : 2;
+      //gives that random spot a 2 or 4
+    grid[randomSpot[0]][randomSpot[1]] = Math.random() < 0.5 ? 4 : 2;
     return grid;
   }
+//////////////////////////////////////
   slide(row) {
     const newRow = row.filter(data => data);
     const zerosArr = Array(4 - newRow.length).fill(0);
