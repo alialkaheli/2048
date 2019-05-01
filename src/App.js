@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   initGame() {
-    // grid is an array of row and col 
+    // grid is an array of row and col
     let grid = this.blankGrid.map(row => row.slice());
     //initialize with 2 or 4 in two random spots
     grid = this.addNumber(grid);
@@ -63,17 +63,17 @@ class App extends React.Component {
     //adds all available spots in an array
     grid.forEach((rowData, x) =>
       rowData.forEach((data, y) => {
-        if (!data) availableSpot.push([x,y]);
+        if (!data) availableSpot.push([x, y]);
       })
     );
     //chooses a random spot
     const randomSpot =
       availableSpot[Math.floor(Math.random() * availableSpot.length)];
-      //gives that random spot a 2 or 4
+    //gives that random spot a 2 or 4
     grid[randomSpot[0]][randomSpot[1]] = Math.random() < 0.5 ? 4 : 2;
     return grid;
   }
-////////////// functionality of the game
+  ////////////// functionality of the game
   slide(row) {
     //create an array of numbers, no zeros
     const newRow = row.filter(data => data);
@@ -138,7 +138,6 @@ class App extends React.Component {
     return newGrid;
   }
 
-
   ////all directions
   rightOp() {
     //copy the state grid to copyGrid
@@ -184,6 +183,15 @@ class App extends React.Component {
     });
     return over;
   }
+  win() {
+    let over = false;
+    this.state.gridData.forEach(row => {
+      row.forEach(data => {
+        if (data === 2048) over = true;
+      });
+    });
+    return over;
+  }
 
   render() {
     let renderOverlay = "";
@@ -193,6 +201,15 @@ class App extends React.Component {
         <div className="overlay">
           <div className="overlay-msg">
             <h4>Game Over</h4>
+            <button onClick={() => this.initGame()}>Restart</button>
+          </div>
+        </div>
+      );
+    } else if (this.win()) {
+      renderOverlay = (
+        <div className="overlay">
+          <div className="overlay-msg">
+            <h4>Congrats You Win</h4>
             <button onClick={() => this.initGame()}>Restart</button>
           </div>
         </div>
