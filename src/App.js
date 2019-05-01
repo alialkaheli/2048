@@ -187,6 +187,7 @@ class App extends React.Component {
 
   render() {
     let renderOverlay = "";
+    //checks for game over
     if (this.gameOver()) {
       renderOverlay = (
         <div className="overlay">
