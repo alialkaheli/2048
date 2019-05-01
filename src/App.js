@@ -73,10 +73,13 @@ class App extends React.Component {
     grid[randomSpot[0]][randomSpot[1]] = Math.random() < 0.5 ? 4 : 2;
     return grid;
   }
-//////////////////////////////////////
+////////////// functionality of the game
   slide(row) {
+    //create an array of numbers, no zeros
     const newRow = row.filter(data => data);
+    //an array of the remaining are zeros
     const zerosArr = Array(4 - newRow.length).fill(0);
+    //combine the two
     return [...zerosArr, ...newRow];
   }
 
@@ -133,8 +136,12 @@ class App extends React.Component {
     return newGrid;
   }
 
+
+  ////all directions
   rightOp() {
+    //copy the state grid to copyGrid
     let copyGrid = this.state.gridData.map(row => row.slice());
+
     copyGrid = copyGrid.map(row => this.slideAndCombine(row));
     this.diffGrid(copyGrid);
   }
