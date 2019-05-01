@@ -1,20 +1,6 @@
-.whole-board{
-    width:530px;
+.Grid {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	border: solid 2px #f7f6e7;
 }
-.updown-board{
-    width: 100%;
-}
-.updown-button{
-    width:100%;
-    height: 50px;
-    border-radius: 5px;
-}
-
-.mid-board{
-    display:flex;
-}
-.leftright-button{
-   border-radius: 5px;
-   width: 60px; 
-}
-
