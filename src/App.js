@@ -174,6 +174,7 @@ class App extends React.Component {
     this.diffGrid(copyGrid);
   }
 
+  ///When board is filled then game over
   gameOver() {
     let over = true;
     this.state.gridData.forEach(row => {
