@@ -100,7 +100,9 @@ class App extends React.Component {
   }
 
   slideAndCombine(row) {
+    //sliding numbers to the right
     row = this.slide(row);
+    //combine similar numbers and adding score
     row = this.combine(row);
     return row;
   }
@@ -141,17 +143,20 @@ class App extends React.Component {
   rightOp() {
     //copy the state grid to copyGrid
     let copyGrid = this.state.gridData.map(row => row.slice());
-
+    //Mapping each row and move numbers to the right
     copyGrid = copyGrid.map(row => this.slideAndCombine(row));
+    //checks if numbers moved, if so then adds a new number randomly
     this.diffGrid(copyGrid);
   }
   leftOp() {
+    //same as rightOp but flipGrid function reverses the coprGrid
     let copyGrid = this.state.gridData.map(row => row.slice());
     copyGrid = this.flipGrid(copyGrid).map(row => this.slideAndCombine(row));
     copyGrid = this.flipGrid(copyGrid);
     this.diffGrid(copyGrid);
   }
   upOp() {
+    //same as leftOp but transpose it first
     let copyGrid = this.state.gridData.map(row => row.slice());
     copyGrid = this.transpose(copyGrid);
     copyGrid = this.flipGrid(copyGrid);
@@ -161,6 +166,7 @@ class App extends React.Component {
     this.diffGrid(copyGrid);
   }
   downOp() {
+    //same as rightOp but ranspose it first
     let copyGrid = this.state.gridData.map(row => row.slice());
     copyGrid = this.transpose(copyGrid);
     copyGrid = copyGrid.map(row => this.slideAndCombine(row));
